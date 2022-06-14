@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chillex-renerzises you</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="main_div">
+    
+<div class="music_container">
+    <h2 id="title"> Middle of Night</h2>
+    <h3 id="artist">Elhe Duhe</h3>
+    <div class="img_container">
+        <img src="1.jpg" alt="">
+    </div>
+    <audio src="1.mp3" ></audio>
+    <div class="music_controls">
+        <i class="fa-solid fa-backward" id="prev" title="previous"></i>
+        <i class="fa-solid fa-play main_button" id="play" title="play"></i>
+        <i class="fa-solid fa-forward" id="next" title="forward"></i>
+        
+    </div>
+   
+</div>
+</div>
+
+<script src="https://kit.fontawesome.com/e84a764a56.js" crossorigin="anonymous"></script>
+<script>
+const music=document.querySelector("audio");
+const play= document.getElementById("play");
+const img= document.querySelector("img");
+const artist= document.getElementById("artist");
+const title= document.getElementById("title");
+const prev= document.getElementById("prev");
+const next= document.getElementById("next");
+const songs=[
+    {
+        name:"1",
+        title:"Middle of Night",
+        artist:"Elhe Duhe",
+    },
+    {
+        name:"2",
+        title:"Pehli-pehli baar",
+        artist:"alka & k.Sanu",
+    },
+    {
+        name:"3",
+        title:"Panni di gal",
+        artist:"M.Buttar",
+    },
+    {
+        name:"4",
+        title:"Soch na sake",
+        artist:"Arjit singh",
+    },
+    {
+        name:"5",
+        title:"Bappu",
+        artist:"Amar sandhu",
+    },
+    {
+        name:"6",
+        title:"chand khila hai",
+        artist:"kishor kumar",
+    },
+    {
+        name:"7",
+        title:"hawayein",
+        artist:"Arjit singh",
+    },
+    {
+        name:"8",
+        title:"let me down",
+        artist:"Alec benjamin",
+    },
+    {
+        name:"9",
+        title:"Walliyan",
+        artist:"hornoor",
+    },
+
+]
+
+let isPlaying = false;
+
+const playMusic = ()=>{
+    isPlaying=true;
+    music.play();
+    
+    play.classList.replace('fa-play','fa-pause');
+    img.classList.add("anime");
+    
+};
+
+const pauseMusic= ()=>{
+    isPlaying=false;
+    music.pause();
+    
+    play.classList.replace('fa-pause','fa-play');
+    img.classList.remove("anime");
+    
+};
+play.addEventListener('click',()=>{
+    if(isPlaying){
+        pauseMusic();
+    }
+    else{
+        playMusic();
+    }
+    
+});
+const loadSong=(songs)=>{
+    title.textContent=songs.title;
+    artist.textContent=songs.artist;
+    music.src= songs.name+".mp3";
+    img.src=+songs.name+".jpg";
+};
+songIndex= 0;
+
+const nextSong=()=>{
+    songIndex=(songIndex+1) % songs.length;
+    loadSong(songs[songIndex]);
+    playMusic();
+
+};
+const prevSong=()=>{
+    songIndex=(songIndex -1 +songs.length)%songs.length;
+    loadSong(songs[songIndex]);
+    playMusic();
+
+};
+next.addEventListener('click',nextSong);
+prev.addEventListener('click',prevSong);
+
+
+
+
+</script>
+</body>
+</html>

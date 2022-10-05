@@ -1,2 +1,2 @@
-# musicapp
+# Chillex re-energize you
 This is my first music web application made using HTML CSS and JS
